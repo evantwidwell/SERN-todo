@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, {useState} from 'react';
+import Axios from 'axios';
+
 
 function App() {
+  const [movieName, setMovieName] = useState('');
+  const [review, setReview] = useState('');
+
+  const submitReview = () =>{
+    Axios.post("http://localhost:3001/api/insert", {
+      movieName: movieName,
+      movieReview: review
+    }).then(() => alert("succesfully inserted"))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Review your movie</h1>
+      <div className="form">
+        <label>Movie Name:</label>
+        <input type="text" 
+        name="movieName" 
+        onChange={(e) => {
+          setMovieName(e.target.value);
+        }}
+        />
+        <label>Review:</label>
+        <input type="text" 
+        name="review" 
+        onChange={(e) => {
+          setReview(e.target.value);
+        }}/>
+        <button onClick={submitReview()} >Submit</button>
+      </div>
     </div>
   );
 }
