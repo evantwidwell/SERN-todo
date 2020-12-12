@@ -1,7 +1,6 @@
 import "./App.css";
 import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
-import Poster from './Poster'
 import unirest from 'unirest';
 
 function Movies() {
@@ -9,7 +8,7 @@ function Movies() {
   const [review, setReview] = useState('');
   const [movieReviewList, setMovieList] = useState([]);
   const [newReview, setNewReview] = useState('');
-  const [poster, setPoster] = useState('')
+  
 
   useEffect(()=>{
     Axios.get("http://localhost:3001/api/get").then((response) => {
@@ -47,12 +46,14 @@ function Movies() {
     }
   const deleteReview = (movie) => {
     Axios.delete(`http://localhost:3001/api/delete/${movie}`)
+    window.location.reload();
   }
   const updateReview = (movieName) =>{
     Axios.put("http://localhost:3001/api/update", {
       movieName: movieName,
       movieReview: newReview
     });
+    window.location.reload();
       setNewReview("");
     };
 
@@ -74,11 +75,13 @@ function Movies() {
     }
   return (
     <div className="App">
-      <h1>Review your movie</h1>
+      
       <div className="form">
+        <h1>Write your Review</h1>
         <label>Movie Name:</label>
         <input type="text" 
         name="movieName" 
+        
         onChange={(e) => {
           setMovieName(e.target.value);
         }}
@@ -87,11 +90,13 @@ function Movies() {
         <input 
         type="text" 
         name="review" 
+        className= 'review'
         onChange={(e) => {
           setReview(e.target.value);
         }}/>
         <button onClick={submitReview} >Submit</button>
-
+        </div>
+        <div className="list">
         {movieReviewList.map((val) =>{
           return <div className="card">
             <h1>{val.movieName} </h1>
@@ -110,6 +115,7 @@ function Movies() {
             
             </div>
         })}
+      
       </div>
     </div>
   );

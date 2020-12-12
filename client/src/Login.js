@@ -10,35 +10,33 @@ const styles = {
   },
   mainContainer: {
     display: 'flex',
+    
     margin: '0px',
     background: 'black',
     color: 'white',
-    height: '100%'
+    height: '1000px'
   },
   loginForm: {
     margin: '10px'
   },
   button: {
-    background: 'linear-gradient(to bottom, #000000 5%, #29610b 100%)',
-    background-color: '#000000',
+    
+    margin: '3px,  green',
+    color: 'green',
+    background: 'black',
+    borderRadius: '3px',
+    width: '100px',
     // border-radius:'4px',
     // border:'1px solid #18ab29',
     // display:'inline-block',
-    // cursor:pointer',
+    cursor:'pointer',
     // color:#ffffff',
     
     // padding:6px 12px;
     
     // text-shadow:0px 1px 0px #2f6627;
   },
-  // Button:hover {
-  //   background:linear-gradient(to bottom, #29610b 5%, #000000 100%);
-  //   background-color:#29610b;
-  // },
-  // Button:active {
-  //   position:relative;
-  //   top:1px;
-  // }
+  
 
 }; 
 class Login extends Component {
