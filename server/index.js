@@ -6,9 +6,9 @@ const cors = require('cors');
 
 
 const db = mysql.createPool({
-  host: '34.70.106.43',
+  host: '35.222.105.115',
   user: 'root',
-  password: 'password',
+  password: 'Thrillh0!',
   database: 'CRUDDB'
 })
 
@@ -20,6 +20,7 @@ app.get('/api/get', (req,res)=>{
   const sqlSelect = "SELECT * FROM movie_reviews"
   db.query(sqlSelect, (err, result) =>{
     res.send(result);
+    console.log("reviews" + result)
   } )
 })
 
@@ -27,7 +28,7 @@ app.post('/api/insert', (req,res) => {
 
   const movieName = req.body.movieName
   const movieReview = req.body.movieReview
-
+  console.log(req.body.movieName)
   const sqlInsert = "INSERT INTO movie_reviews (movieName, movieReview) VALUES (? , ?)"
   db.query(sqlInsert, [movieName, movieReview], (err, result) => {
     console.log(result)
